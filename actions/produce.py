@@ -3,6 +3,7 @@ Kafka Producer Action for stackstorm
 """
 from st2common.runners.base_action import Action
 from kafka import KafkaProducer, KafkaConsumer
+from ssl import create_default_context
 
 
 class ProduceMessageAction(Action):
@@ -48,6 +49,7 @@ class ProduceMessageAction(Action):
         producer = KafkaProducer(
             security_protocol="SSL",
             bootstrap_servers=_hosts.split(","),
+            ssl_context=create_default_context(),
             client_id=_client_id,
             value_serializer=lambda m: m.encode("utf-8"),
             max_request_size=10485760,
