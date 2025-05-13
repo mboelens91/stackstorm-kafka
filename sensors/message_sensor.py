@@ -88,7 +88,7 @@ class KafkaMessageSensor(Sensor):
                 'topic': topic,
                 'partition': message.partition,
                 'offset': message.offset,
-                'key': message.key,
+                'key': message.key.decode(),
                 'message': message.value,
             }
             self._sensor_service.dispatch(trigger=self.TRIGGER, payload=payload)
