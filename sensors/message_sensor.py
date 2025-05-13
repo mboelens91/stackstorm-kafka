@@ -91,8 +91,6 @@ class KafkaMessageSensor(Sensor):
                 'message': message.value,
             }
             self._sensor_service.dispatch(trigger=self.TRIGGER, payload=payload)
-            # Mark this message as fully consumed
-            self._consumer.task_done(message)
             self._consumer.commit()
 
     def cleanup(self):
