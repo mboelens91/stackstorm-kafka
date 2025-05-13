@@ -49,7 +49,7 @@ class KafkaMessageSensor(Sensor):
                                        client_id=self._client_id,
                                        group_id=self._group_id,
                                        bootstrap_servers=self._hosts,
-                                       value_deserializer=lambda m: m.decode(),
+                                       value_deserializer=lambda m: json.loads(m.decode()),
                                        security_protocol="SSL",
                                        ssl_context=create_default_context(),
                                        api_version=(2,6))
