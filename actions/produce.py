@@ -46,7 +46,7 @@ class ProduceMessageAction(Action):
             raise Exception(f"Topic does not exist: {topic}")
 
         producer = KafkaProducer(
-            security_protocol="SSL"
+            security_protocol="SSL".
             bootstrap_servers=_hosts.split(","),
             client_id=_client_id,
             value_serializer=lambda m: m.encode("utf-8"),
