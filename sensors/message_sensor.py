@@ -51,8 +51,7 @@ class KafkaMessageSensor(Sensor):
                                        bootstrap_servers=self._hosts,
                                        security_protocol="SSL",
                                        ssl_context=create_default_context(),
-                                       api_version=(2,6),
-                                       value_deserializer=lambda m: m.decode())
+                                       api_version=(2,6))
         self._ensure_topics_existence()
 
     def _ensure_topics_existence(self):
