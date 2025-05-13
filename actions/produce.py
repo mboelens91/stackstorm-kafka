@@ -51,6 +51,7 @@ class ProduceMessageAction(Action):
             client_id=_client_id,
             value_serializer=lambda m: m.encode("utf-8"),
             max_request_size=10485760,
+            api_version=(2,6),
         )
         future = producer.send(topic, message)
         record_metadata = future.get(timeout=10)  # TODO: Make this timeout an input param
