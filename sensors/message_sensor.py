@@ -2,6 +2,7 @@ import sys
 import json
 from st2reactor.sensor.base import Sensor
 from kafka import KafkaConsumer
+from ssl import create_default_context
 
 
 class KafkaMessageSensor(Sensor):
@@ -48,6 +49,9 @@ class KafkaMessageSensor(Sensor):
                                        client_id=self._client_id,
                                        group_id=self._group_id,
                                        bootstrap_servers=self._hosts,
+                                       security_protocol="SSL",
+                                       ssl_context=create_default_context(),
+                                       api_version=(2,6),
                                        value_deserializer=self._try_deserialize)
         self._ensure_topics_existence()
 
